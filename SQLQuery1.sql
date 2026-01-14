@@ -4,8 +4,7 @@ GO
 USE ProductInventory;
 GO
 
--- Create Stores Table
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Stores')
+-- Stores Table
 BEGIN
     CREATE TABLE Stores (
         StoreId INT IDENTITY(1,1) PRIMARY KEY,
@@ -15,8 +14,7 @@ BEGIN
 END
 GO
 
--- Create Products Table
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Products')
+-- Products Table
 BEGIN
     CREATE TABLE Products (
         ProductId INT IDENTITY(1,1) PRIMARY KEY,
@@ -26,8 +24,7 @@ BEGIN
 END
 GO
 
--- Create Stocks Table
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Stocks')
+-- Stocks Table
 BEGIN
     CREATE TABLE Stocks (
         StockId INT IDENTITY(1,1) PRIMARY KEY,
@@ -36,13 +33,12 @@ BEGIN
         StockLevel INT NOT NULL DEFAULT 0,
         FOREIGN KEY (StoreId) REFERENCES Stores(StoreId),
         FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
-        CONSTRAINT UQ_Store_Product UNIQUE(StoreId, ProductId) -- Ensure one stock entry per product per store
+        CONSTRAINT UQ_Store_Product UNIQUE(StoreId, ProductId) 
     );
 END
 GO
 
--- Insert Dummy Data for Stores
-IF NOT EXISTS (SELECT 1 FROM Stores)
+-- Insert Data for Stores
 BEGIN
     INSERT INTO Stores (StoreName, Address) VALUES 
     ('Tech Haven', '123 Tech Blvd, Silicon Valley'),
@@ -51,8 +47,7 @@ BEGIN
 END
 GO
 
--- Insert Dummy Data for Products
-IF NOT EXISTS (SELECT 1 FROM Products)
+-- Insert Data for Products
 BEGIN
     INSERT INTO Products (ProductName, Category) VALUES 
     ('Laptop', 'Electronics'),
@@ -63,8 +58,7 @@ BEGIN
 END
 GO
 
--- Insert Dummy Data for Stocks
-IF NOT EXISTS (SELECT 1 FROM Stocks)
+-- Insert Data for Stocks
 BEGIN
     -- Store 1 Stocks
     INSERT INTO Stocks (StoreId, ProductId, StockLevel) VALUES (1, 1, 50);
