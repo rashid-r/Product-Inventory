@@ -42,8 +42,15 @@ namespace Product_Inventory.Controllers
                     return NotFound(new ApiResponse<object>(404, "Store or Product not found, or update failed."));
                 }
 
-                var updatedStock = await _stockService.GetStockAsync(request.StoreId, request.ProductId);
-                return Ok(new ApiResponse<StockResponseDto>(200, "Stock updated successfully", updatedStock));
+                var response = new StockUpdateResponseDto
+                {
+                    Message = "Stock updated successfully",
+                    StoreId = request.StoreId,
+                    ProductId = request.ProductId,
+                    UpdatedStockLevel = request.NewStockLevel
+                };
+
+                return Ok(response);
             }
             catch (ArgumentException ex)
             {
