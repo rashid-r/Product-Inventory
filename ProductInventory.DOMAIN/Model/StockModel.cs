@@ -13,6 +13,8 @@ namespace ProductInventory.DOMAIN.Model
         public int ProductId { get; set; }
         public int StockLevel { get; set; }
         public string StoreName { get; set; }
+        public string Address { get; set; }
         public string ProductName { get; set; }
+        public string Category { get; set; }
     }
 }

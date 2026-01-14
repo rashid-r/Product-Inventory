@@ -18,9 +18,28 @@ namespace ProductInventory.APPLICATION.Services
             _repository = repository;
         }
 
-        public async Task<StockModel> GetStockAsync(int storeId, int productId)
+        public async Task<StockResponseDto> GetStockAsync(int storeId, int productId)
         {
-            return await _repository.GetStockAsync(storeId, productId);
+            var stock = await _repository.GetStockAsync(storeId, productId);
+
+            if (stock == null) return null;
+
+            return new StockResponseDto
+            {
+                Store = new StoreDto
+                {
+                    StoreId = stock.StoreId,
+                    StoreName = stock.StoreName,
+                    Address = stock.Address
+                },
+                Product = new ProductDto
+                {
+                    ProductId = stock.ProductId,
+                    ProductName = stock.ProductName,
+                    Category = stock.Category
+                },
+                StockLevel = stock.StockLevel
+            };
         }
 
         public async Task<bool> UpdateStockAsync(UpdateStockRequestdto request)

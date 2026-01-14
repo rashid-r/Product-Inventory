@@ -10,7 +10,7 @@ namespace ProductInventory.APPLICATION.Interfaces
 {
     public interface IStockService
     {
-        Task<StockModel> GetStockAsync(int storeId, int productId);
+        Task<StockResponseDto> GetStockAsync(int storeId, int productId);
         Task<bool> UpdateStockAsync(UpdateStockRequestdto request);
     }
 }

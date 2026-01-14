@@ -27,7 +27,7 @@ namespace Product_Inventory.Controllers
                 return NotFound(new ApiResponse<object>(404, "Stock information not found for the given Store and Product."));
             }
 
-            return Ok(new ApiResponse<StockModel>(200, "Stock retrieved successfully", stock));
+            return Ok(new ApiResponse<StockResponseDto>(200, "Stock retrieved successfully", stock));
         }
 
         [HttpPost]
@@ -43,7 +43,7 @@ namespace Product_Inventory.Controllers
                 }
 
                 var updatedStock = await _stockService.GetStockAsync(request.StoreId, request.ProductId);
-                return Ok(new ApiResponse<StockModel>(200, "Stock updated successfully", updatedStock));
+                return Ok(new ApiResponse<StockResponseDto>(200, "Stock updated successfully", updatedStock));
             }
             catch (ArgumentException ex)
             {

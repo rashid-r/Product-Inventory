@@ -87,8 +87,12 @@ BEGIN
 
     SELECT 
         s.StockId,
+        s.StoreId,
         st.StoreName,
+        st.Address,
+        s.ProductId,
         p.ProductName,
+        p.Category,
         s.StockLevel
     FROM Stocks s
     INNER JOIN Stores st ON s.StoreId = st.StoreId
@@ -114,15 +118,19 @@ BEGIN
     BEGIN
          SELECT 
             s.StockId,
+            s.StoreId,
             st.StoreName,
+            st.Address,
+            s.ProductId,
             p.ProductName,
+            p.Category,
             s.StockLevel
         FROM Stocks s
         INNER JOIN Stores st ON s.StoreId = st.StoreId
         INNER JOIN Products p ON s.ProductId = p.ProductId
         WHERE s.StoreId = @StoreId AND s.ProductId = @ProductId;
     END
-    ELSE
+    else
     BEGIN
         SELECT NULL; 
     END

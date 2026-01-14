@@ -47,7 +47,6 @@ namespace ProductInventory.INFRASTRUCTURE.Repository
                 parameters.Add("ProductId", productId, DbType.Int32);
                 parameters.Add("NewStockLevel", newStockLevel, DbType.Int32);
 
-
                 var result = await connection.QuerySingleOrDefaultAsync<StockModel>(
                     "sp_UpdateStock",
                     parameters,
