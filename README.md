@@ -19,15 +19,6 @@ The solution is organized into four distinct layers to ensure separation of conc
 *   **`ProductInventory.DOMAIN`** (Core): Contains Entities, DTOs, and common Models.
 *   **`ProductInventory.INFRASTRUCTURE`** (Data): Implements data access using Dapper and SQL protocols.
 
-## ✨ Features
-
-*   **Get Stock**: Retrieve current stock levels for a specific product in a store.
-*   **Update Stock**: Modify stock quantities with validation logic.
-*   **Validation**:
-    *   Returns `404 Not Found` for invalid Store/Product IDs.
-    *   Returns `400 Bad Request` for negative stock levels.
-*   **Standardized Responses**: All API responses are wrapped in a unified `ApiResponse<T>` structure.
-
 ## 🔌 API Endpoints
 
 ### 1. Get Stock
